@@ -31,6 +31,9 @@ const Menu = withRouter(({history}) => (
       <Link to="/standings">
         <Button style={isActive(history, "/standings")}>Standings</Button>
       </Link>
+      <Link to="/fixtures">
+        <Button style={isActive(history, "/fictures")}>Fixtures</Button>
+      </Link>
       {
         !auth.isAuthenticated() && (<span>
           <Link to="/signup">
