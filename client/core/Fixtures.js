@@ -10,6 +10,7 @@ import { divide, method } from 'lodash'
 import '../../assets/assets-per/css/style.css';
 import '../../assets/assets-per/css/bootstrap.min.css';
 import '../../assets/assets-per/css/responsive.css';
+import '../../assets/assets-per/css/schedule-page-responsive.css';
 
 
 
@@ -41,8 +42,52 @@ const fetchFixtures = async () => {
 
     //const classes = useStyles()
     return (
-        <div>
+    <div>
+   
+        <div class="schedule">
+            <div class="container">
+                <div class="row">
+                
+                {fixtures.map(fixture => (
+                    <div class="col-xl-6 col-lg-6"  key = {fixture.fixture_id}>
+                        <div class="single-match">
+                            <div class="part-head">
+                                <h5 class="match-title">{fixture.league.name}</h5>
+                                <span class="match-venue">{fixture.venue}</span>
+                            </div>
+                            <div class="part-team">
+                                <div class="single-team">
+                                    <div class="logo">
+                                        <img src={fixture.homeTeam.logo} alt=""/>
+                                    </div>
+                                    <span class="team-name">{fixture.homeTeam.team_name}</span>
+                                </div>
+                                <div class="match-details">
+                                    <div class="match-time">
+                                        <span class="date"> {fixture.event_date.charAt(8)}{fixture.event_date.charAt(9)} - {fixture.event_date.charAt(5)}{fixture.event_date.charAt(6)} -  20{fixture.event_date.charAt(2)}{fixture.event_date.charAt(3)}</span>
+                                        <span class="time">{fixture.event_date.charAt(11)}{fixture.event_date.charAt(12)}:{fixture.event_date.charAt(14)}{fixture.event_date.charAt(15)}</span>
+                                    </div>
+                                    <span class="versase">vs</span>
+                                    <div class="buttons">
+                                        <a href="#" class="buy-ticket bet-btn bet-btn-dark-light">buy ticket</a>
+                                    </div>
+                                </div>
+                                <div class="single-team">
+                                    <div class="logo">
+                                        <img src={fixture.awayTeam.logo} alt=""/>
+                                    </div>
+                                    <span class="team-name">{fixture.awayTeam.team_name}</span>
+                                </div>
+                            </div>
 
+                        </div>
+               
+                    </div>
+                    ))}
+
+                </div>
+            </div>     
+        </div>        
 
 
 
