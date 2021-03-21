@@ -69,7 +69,7 @@ const fetchFixtures = async () => {
                                     </div>
                                     <span class="versase">vs</span>
                                     <div class="buttons">
-                                        <a href="#" class="buy-ticket bet-btn bet-btn-dark-light">buy ticket</a>
+                                        <a href="#"  class="buy-ticket bet-btn bet-btn-dark-light"><Link to={`/fixtures/${fixture.fixture_id}`} >Odds Checker</Link></a>
                                     </div>
                                 </div>
                                 <div class="single-team">

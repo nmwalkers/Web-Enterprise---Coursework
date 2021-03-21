@@ -8,6 +8,7 @@ import EditProfile from './user/EditProfile'
 import Profile from './user/Profile'
 import Standings from './core/Standings'
 import Fixtures from './core/Fixtures'
+import FixtureOdd from './core/FixtureOdd'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 const MainRouter = () => {
@@ -16,7 +17,8 @@ const MainRouter = () => {
  <Switch>
  <Route exact path="/" component={Home}/>
  <Route  path="/standings" component={Standings}/>
- <Route  path="/fixtures" component={Fixtures}/>
+ <Route exact path="/fixtures" component={Fixtures}/>
+ <Route path="/fixtures/:id" component={FixtureOdd}/>
  <Route path="/users" component={Users}/>
  <Route path="/signup" component={Signup}/>
  <Route path="/signin" component={Signin}/>
