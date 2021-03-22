@@ -12,6 +12,7 @@ import '../../assets/assets-per/css/style.css';
 import '../../assets/assets-per/css/bootstrap.min.css';
 import '../../assets/assets-per/css/responsive.css';
 import '../../assets/assets-per/css/schedule-page-responsive.css';
+import IconIMG from '../../assets/images/footballicon.png';
 
 
 
@@ -29,6 +30,7 @@ const [odds, setFixtureOdd] = useState([]);
 const [loading, setLoading] = useState(false);
 //false means no issue
 const [isDataIssue, setDataIssue] = useState(false);
+
 
 
 
@@ -53,9 +55,9 @@ const fetchFixtureOdd = async () => {
 
  if(fixtureOdds.api.results == 0){
     setDataIssue(true);
-    console.log("There was a data issue")
+    //console.log("There was a data issue")
   } else {
-      console.log("There was no issue")
+    //  console.log("There was no issue")
     setFixtureOdd(fixtureOdds.api.odds[0].bookmakers);
     console.log(fixtureOdds.api.odds[0].bookmakers);
     setLoading(false);
@@ -115,11 +117,11 @@ if(isDataIssue){
                                           
                                             <div className="single-sport-box">
                                             <div className="part-icon">
-                                                <i className="flaticon-football"></i>
+                                            <img src={IconIMG} alt="Logo" />
                                             </div>
                                             <div className="part-team">
                                                 <ul>
-                                                    <h3>{odd.bookmaker_name}</h3>
+                                                    <h4>{odd.bookmaker_name}</h4>
                                                 </ul>
                                             </div>
                                             <div className="part-match">
