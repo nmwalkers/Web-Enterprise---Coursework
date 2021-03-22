@@ -17,8 +17,8 @@ const MainRouter = () => {
  <Switch>
  <Route exact path="/" component={Home}/>
  <Route  path="/standings" component={Standings}/>
- <Route exact path="/fixtures" component={Fixtures}/>
- <Route path="/fixtures/:id/:home/:away" component={FixtureOdd}/>
+ <Route exact path="/fixtures/user/:userId" component={Fixtures}/>
+ <Route path="/fixtures/:id/:home/:away/user/:userId" component={FixtureOdd}/>
  <Route path="/users" component={Users}/>
  <Route path="/signup" component={Signup}/>
  <Route path="/signin" component={Signin}/>

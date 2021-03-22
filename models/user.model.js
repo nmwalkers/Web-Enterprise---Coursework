@@ -48,7 +48,7 @@ const UserSchema = new mongoose.Schema({
   },
   betting_lose:{
     type: Number,
-    default: 2
+    default: 0
   },
   hashed_password: {
     type: String,

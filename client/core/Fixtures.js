@@ -17,11 +17,12 @@ import '../../assets/assets-per/css/schedule-page-responsive.css';
 
 
 
-function Fixtures(){
+function Fixtures( match ){
 
   useEffect(() => {
     setLoading(true)
     fetchFixtures();
+    console.log(match)
    
 },[])
 
@@ -118,7 +119,7 @@ if(isDataIssue){
                                     </div>
                                     <span className="versase">vs</span>
                                     <div className="buttons">
-                                        <a href="#"  className="buy-ticket bet-btn bet-btn-dark-light"><Link to={`/fixtures/${fixture.fixture_id}/${fixture.homeTeam.team_name}/${fixture.awayTeam.team_name}`} >Odds Checker</Link></a>
+                                        <a href="#"  className="buy-ticket bet-btn bet-btn-dark-light"><Link to={`/fixtures/${fixture.fixture_id}/${fixture.homeTeam.team_name}/${fixture.awayTeam.team_name}/user/${match.match.params.userId}`} >Odds Checker</Link></a>
                                     </div>
                                 </div>
                                 <div className="single-team">

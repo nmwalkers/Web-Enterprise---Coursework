@@ -4,10 +4,11 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
-import {Link} from 'react-router-dom';
 import { divide, method } from 'lodash';
 import Dotloader from "react-spinners/DotLoader";
-
+import auth from './../auth/auth-helper'
+import {read} from '../../client/user/api-user.js'
+import {Redirect, Link} from 'react-router-dom';
 import '../../assets/assets-per/css/style.css';
 import '../../assets/assets-per/css/bootstrap.min.css';
 import '../../assets/assets-per/css/responsive.css';
@@ -24,7 +25,7 @@ function FixtureOdd( match ){
   useEffect(() => {
     setLoading(true);
     fetchFixtureOdd();
-    
+
 },[])
 
 const [odds, setFixtureOdd] = useState([]);
@@ -33,7 +34,9 @@ const [loading, setLoading] = useState(false);
 const [isDataIssue, setDataIssue] = useState(false);
 const [buttonPopup, setButtonPopup] = useState(false);
 
-
+//getting bet button data
+const [user, setUser] = useState({})
+const jwt = auth.isAuthenticated()
 
 const fetchFixtureOdd = async () => {
   const fixtureRawOddsData = await fetch(`https://api-football-v1.p.rapidapi.com/v2/odds/fixture/${match.match.params.id}`, {
@@ -52,7 +55,7 @@ const fetchFixtureOdd = async () => {
 })
 
  const fixtureOdds = await fixtureRawOddsData.json();
- console.log(fixtureOdds);
+ //console.log(fixtureOdds);
 
  if(fixtureOdds.api.results == 0){
     setDataIssue(true);
@@ -60,12 +63,12 @@ const fetchFixtureOdd = async () => {
   } else {
     //  console.log("There was no issue")
     setFixtureOdd(fixtureOdds.api.odds[0].bookmakers);
-    console.log(fixtureOdds.api.odds[0].bookmakers);
+    //console.log(fixtureOdds.api.odds[0].bookmakers);
     setLoading(false);
   }
  
   
- 
+  console.log(match, "This is match data", match.match.params.home)
 
 }
 
