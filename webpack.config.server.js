@@ -28,6 +28,7 @@ const config = {
     use: [
       //'style-loader',
       'css-loader'
+      
     ]
   }
  ]

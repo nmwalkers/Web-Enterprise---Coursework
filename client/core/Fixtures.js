@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import {Link} from 'react-router-dom';
 import { divide, method } from 'lodash'
+import Dotloader from "react-spinners/DotLoader";
 
 import '../../assets/assets-per/css/style.css';
 import '../../assets/assets-per/css/bootstrap.min.css';
@@ -19,10 +20,16 @@ import '../../assets/assets-per/css/schedule-page-responsive.css';
 function Fixtures(){
 
   useEffect(() => {
+    setLoading(true)
     fetchFixtures();
+   
 },[])
 
 const [fixtures, setFixtures] = useState([]);
+const [loading, setLoading] = useState(false);
+//false means no issue
+const [isDataIssue, setDataIssue] = useState(false);
+
 
 const fetchFixtures = async () => {
   const fixtureRawData = await fetch("https://api-football-v1.p.rapidapi.com/v2/fixtures/league/2790/next/16", {
@@ -31,23 +38,65 @@ const fetchFixtures = async () => {
         "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
         "x-rapidapi-key": "cf148989d0msh98a431f9fa2e99ep13194ajsn1b4844a71936"
     }
+}) .catch((e) => {
+    console.log("There was an error");
 })
 
   const fixtureJson = await fixtureRawData.json();
   console.log(fixtureJson.api.fixtures);
   setFixtures(fixtureJson.api.fixtures);
+  if(fixtureJson.api.fixtures.length < 1){
+    setDataIssue(true);
+  } else {
+    setLoading(false);
+  }
+  
 }
 
+if(isDataIssue){
+ return (
+    
+    <div className="bet-modal-bg show">
+        <div className="bet-modal open">
+            <div className="bet-header">
+                <span className="title">There are no next fixtures currently.</span>
+                <button className="cls-btn"><i className="fas fa-times"></i></button>
+            </div>
+            <div className="bet-body">
+                
+            </div>
+            <div className="bet-footer">
+            <Link to="/"> <button>Head back</button></Link>
+            </div>
+        </div>
+    </div>
 
+ )
+}
 
     //const classNamees = useStyles()
     return (
     <div>
-   
-        <div className="schedule">
+{
+    loading ? 
+    <div className="preloader">
+    <Dotloader 
+    size={150}
+    color={'red'}
+    loading={loading}
+    />
+    <span>LOADING FIXTURES</span>
+    </div>
+
+
+
+    :
+
+
+    <div className="schedule">
             <div className="container">
                 <div className="row">
-                
+              
                 {fixtures.map(fixture => (
                     <div className="col-xl-6 col-lg-6"  key = {fixture.fixture_id}>
                         <div className="single-match">
@@ -89,6 +138,10 @@ const fetchFixtures = async () => {
             </div>     
         </div>        
 
+
+}
+   
+        
 
 
 
