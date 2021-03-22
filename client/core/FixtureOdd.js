@@ -18,6 +18,7 @@ import IconIMG from '../../assets/images/footballicon.png';
 
 
 
+
 function FixtureOdd( match ){
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const [odds, setFixtureOdd] = useState([]);
 const [loading, setLoading] = useState(false);
 //false means no issue
 const [isDataIssue, setDataIssue] = useState(false);
-
+const [buttonPopup, setButtonPopup] = useState(false);
 
 
 
@@ -105,11 +106,12 @@ if(isDataIssue){
     
         :
     
-    
+        <div>
               <div className="betting-table">
                 <div className="row">
                 <div className="col-xl-10 col-lg-10">
                 {odds.map(odd => (
+                    
                                 <div className="tab-content bet-tab-content" id="myTabContent">
                                     <div className="tab-pane fade show active" id="all-sports" role="tabpanel" aria-labelledby="all-sports-tab">
                                         <div className="sports-list">
@@ -126,7 +128,8 @@ if(isDataIssue){
                                             </div>
                                             <div className="part-match">
                                                 <div className="single-place-to-bet">
-                                                    <a href="#">
+                                                    <a href="#" onClick={() => setButtonPopup(true)}>
+                                                      
                                                         <span className="bet-price">{odd.bets[0].values[0].odd}</span>
                                                         <span className="result-for-final">
                                                         {match.match.params.home}
@@ -151,6 +154,7 @@ if(isDataIssue){
                                                 </div>
                                             </div>
                                         </div>
+                                        
     
     
     
@@ -159,12 +163,16 @@ if(isDataIssue){
                 </div>
                 </div> 
                 </div>   
+              
                 ))}                        
                 </div>
                 </div>
                 </div>
                 
-                
+   
+
+
+   </div>
             
                 }
     

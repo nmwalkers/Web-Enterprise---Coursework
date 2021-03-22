@@ -11,8 +11,44 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
     unique: 'Email already exists',
+    lowercase: true,
     match: [/.+\@.+\..+/, 'Please fill a valid email address'],
     required: 'Email is required'
+  },
+  favourite_team: {
+    type: String,
+    trim: true,
+    required: "Pick any team"
+
+  },
+  sex: {
+    type: String,
+    trim: true,
+    required: "Pick which sex"
+
+  },
+  user_role: {
+    type: Boolean,
+    default: false
+
+  },
+  country: {
+    type: String,
+    trim: true,
+    required: "Country is required"
+  },
+
+  betting_winner:{
+    type: Number,
+    default: 0
+  },
+  betting_draw:{
+    type: Number,
+    default : 0
+  },
+  betting_lose:{
+    type: Number,
+    default: 2
   },
   hashed_password: {
     type: String,
@@ -64,6 +100,8 @@ UserSchema.methods = {
   makeSalt: function() {
     return Math.round((new Date().valueOf() * Math.random())) + ''
   }
+
+
 }
 
 

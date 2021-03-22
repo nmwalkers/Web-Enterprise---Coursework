@@ -14,6 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {Link} from 'react-router-dom'
+import MenuItem from '@material-ui/core/MenuItem'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -47,7 +48,14 @@ export default function Signup() {
     name: '',
     password: '',
     email: '',
+    country: '',
+    favourite_team :'',
     open: false,
+    sex: '',
+    user_role: false,
+    betting_winner: 0,
+    betting_draw: 0,
+    betting_lose: 0,
     error: ''
   })
 
@@ -59,7 +67,14 @@ export default function Signup() {
     const user = {
       name: values.name || undefined,
       email: values.email || undefined,
-      password: values.password || undefined
+      country: values.country || undefined,
+      sex: values.sex || undefined,
+      favourite_team: values.favourite_team || undefined,
+      password: values.password || undefined,
+      user_role: false,
+      betting_winner: 0,
+      betting_draw: 0,
+      betting_lose: 0
     }
     create(user).then((data) => {
       if (data.error) {
@@ -78,6 +93,9 @@ export default function Signup() {
           </Typography>
           <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
           <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
+          <TextField id="favourite_team" type="favourite_team" label="Favourite Team" className={classes.textField} value={values.favourite_team} onChange={handleChange('favourite_team')} margin="normal"/><br/>
+          <TextField id="country" type="country" label="Country" className={classes.textField} value={values.country} onChange={handleChange('country')} margin="normal"/><br/>
+          <TextField id="sex" type="sex" label="Sex" className={classes.textField} value={values.sex} onChange={handleChange('sex')} margin="normal"/><br/>
           <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
           <br/> {
             values.error && (<Typography component="p" color="error">
