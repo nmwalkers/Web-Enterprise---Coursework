@@ -19,7 +19,6 @@ function Standings(){
 
   useEffect(() => {
     fetchStandings();
-    console.log(standings, "This is in function");
 },[])
 
 const [standings, setStandings] = useState([]);
@@ -31,9 +30,10 @@ const fetchStandings = async () => {
         "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
         "x-rapidapi-key": "cf148989d0msh98a431f9fa2e99ep13194ajsn1b4844a71936"
     }
+
+    
 })
   const standingsDataa = await standingsData.json();
-  console.log(standingsDataa.api.standings[0]);
   setStandings(standingsDataa.api.standings[0]);
 }
 
@@ -42,12 +42,12 @@ const fetchStandings = async () => {
     //const classes = useStyles()
     return (
       <div>
-        <div class="standing">
-          <div class="container">
-            <div class="standing-list-cover">
-              <div class="standing-team-list">
-                <h4 class="result-title">Premiership Standings</h4>
-                <table class="table">
+        <div className="standing">
+          <div className="container">
+            <div className="standing-list-cover">
+              <div className="standing-team-list">
+                <h4 className="result-title">Premiership Standings</h4>
+                <table className="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Pos</th>
@@ -60,23 +60,23 @@ const fetchStandings = async () => {
                             </thead>
                               <tbody>
                               {standings.map(standing => (
-                                                              <tr>
+                                                              <tr key={standing.id}>
                                                                 <th scope="row">{standing.rank}</th>
                                                                 <td>
-                                                                    <span class="single-team">
-                                                                        <span class="logo">
+                                                                    <span className="single-team">
+                                                                        <span key={standing.id} className="logo">
                                                                             <img src={standing.logo} /> 
                                                                         </span>
-                                                                        <span class="text">
+                                                                        <span className="text">
                                                                            {standing.teamName}
                                                                         </span>
                                                                     </span>
                                                                    
                                                                 </td>
-                                                                <td>{standing.all.win}</td>
-                                                                <td>{standing.all.lose}</td>
-                                                                <td>{standing.all.draw}</td>
-                                                                <td>{standing.points}</td>
+                                                                <td key={standing.id}>{standing.all.win}</td>
+                                                                <td key={standing.id}>{standing.all.lose}</td>
+                                                                <td key={standing.id}>{standing.all.draw}</td>
+                                                                <td key={standing.id}>{standing.points}</td>
                                                             </tr>
 
           
@@ -88,7 +88,8 @@ const fetchStandings = async () => {
             </div>
           </div>
         </div>
-      </div>    
+      </div>  
+        
       </div>
     )
    }

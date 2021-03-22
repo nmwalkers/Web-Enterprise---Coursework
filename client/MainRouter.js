@@ -18,7 +18,7 @@ const MainRouter = () => {
  <Route exact path="/" component={Home}/>
  <Route  path="/standings" component={Standings}/>
  <Route exact path="/fixtures" component={Fixtures}/>
- <Route path="/fixtures/:id" component={FixtureOdd}/>
+ <Route path="/fixtures/:id/:home/:away" component={FixtureOdd}/>
  <Route path="/users" component={Users}/>
  <Route path="/signup" component={Signup}/>
  <Route path="/signin" component={Signin}/>

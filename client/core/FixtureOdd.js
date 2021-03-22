@@ -19,7 +19,8 @@ import '../../assets/assets-per/css/schedule-page-responsive.css';
 function FixtureOdd( match ){
 
   useEffect(() => {
-    fetchFixtureOdd();
+    fetchFixtureOdd()
+    
 },[])
 
 const [odds, setFixtureOdd] = useState({});
@@ -36,7 +37,7 @@ const fetchFixtureOdd = async () => {
  const fixtureOdds = await fixtureRawOddsData.json();
 
   setFixtureOdd(fixtureOdds.api.odds[0].bookmakers);
-  console.log(fixtureOdds.api.odds[0].bookmakers);
+  console.log(fixtureOdds);
 }
 
 
@@ -44,7 +45,67 @@ const fetchFixtureOdd = async () => {
     //const classes = useStyles()
     return (
     <div>
-<h1>Hello</h1>
+          <div class="betting-table">
+            <div class="row">
+            <div class="col-xl-10 col-lg-10">
+            {odds.map(odd => (
+                            <div class="tab-content bet-tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="all-sports" role="tabpanel" aria-labelledby="all-sports-tab">
+                                    <div class="sports-list">
+                                        <h4 class="title">{match.match.params.home} VS {match.match.params.away}</h4>
+                                      
+                                        <div class="single-sport-box">
+                                        <div class="part-icon">
+                                            <i class="flaticon-football"></i>
+                                        </div>
+                                        <div class="part-team">
+                                            <ul>
+                                                <h3>{odd.bookmaker_name}</h3>
+                                            </ul>
+                                        </div>
+                                        <div class="part-match">
+                                            <div class="single-place-to-bet">
+                                                <a href="#">
+                                                    <span class="bet-price">{odd.bets[0].values[0].odd}</span>
+                                                    <span class="result-for-final">
+                                                    {match.match.params.home}
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="single-place-to-bet">
+                                                <a href="#">
+                                                    <span class="bet-price">{odd.bets[0].values[1].odd}</span>
+                                                    <span class="result-for-final">
+                                                        draw
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="single-place-to-bet">
+                                                <a href="#">
+                                                    <span class="bet-price">{odd.bets[0].values[2].odd}</span>
+                                                    <span class="result-for-final">
+                                                    {match.match.params.away}
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                       
+            </div>
+            </div> 
+            </div>   
+            ))}                        
+            </div>
+            </div>
+            </div>
+            
+            
+        
+
 
     </div>
     
