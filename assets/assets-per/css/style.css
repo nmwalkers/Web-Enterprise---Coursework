@@ -666,7 +666,7 @@ ul {
       line-height: 46px; }
 
 .banner {
-  background: url("../img/banner-2.jpg") bottom center no-repeat;
+  background: url("../../images/grass-bg.jpg") bottom center no-repeat;
   background-size: cover;
   position: relative;
   z-index: 2; }
