@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 
 // Connection URL
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb+srv://adminuser:IOZBOChTmhGMoq8x@fitbawpatter.psfbe.mongodb.net/fitabData?retryWrites=true&w=majority", { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGO_PASSWORRD, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${config.mongoUri}`)
 })
