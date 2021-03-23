@@ -9,6 +9,7 @@ import Profile from './user/Profile'
 import Standings from './core/Standings'
 import Fixtures from './core/Fixtures'
 import FixtureOdd from './core/FixtureOdd'
+import AdminPage from './user/AdminPage'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 const MainRouter = () => {
@@ -22,6 +23,7 @@ const MainRouter = () => {
  <Route path="/users" component={Users}/>
  <Route path="/signup" component={Signup}/>
  <Route path="/signin" component={Signin}/>
+ <Route path="/adminPage" component={AdminPage}/>
  <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
  <Route path="/user/:userId" component={Profile}/>
  </Switch>

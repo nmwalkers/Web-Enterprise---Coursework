@@ -7,20 +7,23 @@ import Typography from '@material-ui/core/Typography'
 import { divide, method } from 'lodash';
 import Dotloader from "react-spinners/DotLoader";
 import auth from './../auth/auth-helper'
-import {read} from '../../client/user/api-user.js'
+import {read, update} from '../../client/user/api-user.js'
 import {Redirect, Link} from 'react-router-dom';
 import '../../assets/assets-per/css/style.css';
 import '../../assets/assets-per/css/bootstrap.min.css';
 import '../../assets/assets-per/css/responsive.css';
 import '../../assets/assets-per/css/schedule-page-responsive.css';
 import IconIMG from '../../assets/images/footballicon.png';
+import CountOddButton from '../../client/user/CountOddButton.js';
 
 
 
 
 
 
-function FixtureOdd( match ){
+
+
+ function FixtureOdd( match ) {
 
   useEffect(() => {
     setLoading(true);
@@ -72,6 +75,10 @@ const fetchFixtureOdd = async () => {
 
 }
 
+
+
+
+
 if(isDataIssue){
     return (
        
@@ -85,7 +92,7 @@ if(isDataIssue){
                    
                </div>
                <div className="bet-footer">
-               <Link to="/fixtures"> <button>View other fixtures</button></Link>
+               <Link to={`/fixtures/user/${match.match.params.userId}`}> <button>View other fixtures</button></Link>
                </div>
            </div>
        </div>
@@ -103,6 +110,7 @@ if(isDataIssue){
         loading={loading}
         />
         <span>LOADING ODDS</span>
+        
         </div>
     
     
@@ -131,16 +139,19 @@ if(isDataIssue){
                                             </div>
                                             <div className="part-match">
                                                 <div className="single-place-to-bet">
-                                                    <a href="#" onClick={() => setButtonPopup(true)}>
+                                                    <a href="#" onClick={() => CountOddButton(match.match.params.userId , 1)}>
+                                                   
                                                       
                                                         <span className="bet-price">{odd.bets[0].values[0].odd}</span>
                                                         <span className="result-for-final">
                                                         {match.match.params.home}
                                                         </span>
+                                                       
                                                     </a>
+                                                   
                                                 </div>
                                                 <div className="single-place-to-bet">
-                                                    <a href="#">
+                                                    <a   href="#">
                                                         <span className="bet-price">{odd.bets[0].values[1].odd}</span>
                                                         <span className="result-for-final">
                                                             draw

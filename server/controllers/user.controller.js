@@ -43,7 +43,7 @@ const read = (req, res) => {
 
 const list = async (req, res) => {
   try {
-    let users = await User.find().select('name email updated created')
+    let users = await User.find().select('name email updated created user_role country favourite_team sex betting_draw betting_winner betting_lose')
     res.json(users)
   } catch (err) {
     return res.status(400).json({

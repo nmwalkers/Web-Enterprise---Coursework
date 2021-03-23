@@ -7,12 +7,12 @@ import Typography from '@material-ui/core/Typography'
 import {Link} from 'react-router-dom';
 import { divide, method } from 'lodash'
 import Dotloader from "react-spinners/DotLoader";
+import CountOddButton from '../../client/user/CountOddButton.js';
 
 import '../../assets/assets-per/css/style.css';
 import '../../assets/assets-per/css/bootstrap.min.css';
 import '../../assets/assets-per/css/responsive.css';
 import '../../assets/assets-per/css/schedule-page-responsive.css';
-
 
 
 
@@ -67,7 +67,7 @@ if(isDataIssue){
                 
             </div>
             <div className="bet-footer">
-            <Link to="/"> <button>Head back</button></Link>
+            <Link to="/"><button>Head back</button></Link>
             </div>
         </div>
     </div>
@@ -97,7 +97,6 @@ if(isDataIssue){
     <div className="schedule">
             <div className="container">
                 <div className="row">
-              
                 {fixtures.map(fixture => (
                     <div className="col-xl-6 col-lg-6"  key = {fixture.fixture_id}>
                         <div className="single-match">
@@ -120,6 +119,7 @@ if(isDataIssue){
                                     <span className="versase">vs</span>
                                     <div className="buttons">
                                         <a href="#"  className="buy-ticket bet-btn bet-btn-dark-light"><Link to={`/fixtures/${fixture.fixture_id}/${fixture.homeTeam.team_name}/${fixture.awayTeam.team_name}/user/${match.match.params.userId}`} >Odds Checker</Link></a>
+                                       
                                     </div>
                                 </div>
                                 <div className="single-team">
