@@ -25,7 +25,7 @@ import myImg from '../../assets/images/grass-bg.jpg'
                             <div className="text-content">
                                 <h1>Compare the Best Odds on up and coming games</h1>
                                 <h4>Many of your favourite betting partners</h4>
-                                <p>We're football fanatics and inside our platform you won't be dissapointed. Sign in to compare bets from companies such as Bet365, William Hill and many more!</p>
+                                <p>We're football fanatics and inside our platform you won't be dissapointed. Sign up to compare bets from companies such as Bet365, William Hill and many more!</p>
                                 <div className="banner-button">
                                     <ul>
                                         <li>
@@ -36,7 +36,7 @@ import myImg from '../../assets/images/grass-bg.jpg'
                                 </div>
                             </div>
                         </div>
-                        
+                   
                     </div>
                 </div>
             </div>
