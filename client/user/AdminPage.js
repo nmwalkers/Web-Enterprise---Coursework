@@ -18,6 +18,13 @@ import '../../assets/assets-per/css/dashboard-responsive.css';
 
     const [users, setUsers] = useState([])
     const [countries, setCountries] = useState([])
+    const [totalUser, setTotalUsers] = useState(0);
+    const [totalMale, setTotalMale ] = useState(0);
+    const [totalFemale, setTotalFemale] = useState(0);
+    const [totalOther, setTotalOther] = useState(0);
+    const [totalWinning, setTotalWinning] = useState(0);
+    const [totalDraw, setTotalDraw] = useState(0);
+    const [totalLose, setTotalLose] = useState(0);
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -30,18 +37,147 @@ import '../../assets/assets-per/css/dashboard-responsive.css';
                 console.log(data);
             }
         })
+
+        
+     
+      
+
         return function cleanup() {
             abortController.abort()
         }
+
+        
     }, [])
 
+    
    
   
 // Total Users, Male Female Other
 // Option 1, 2, 3 
     
 
+const getTotalUsers = async () => {
+
+    setTotalUsers(users.length);
+
+
+
+}
+
+
+
+
+function renderTotalAdmins(){
+    const buttonList = [];
+    var total = 0;
     
+
+    for (let i =0; i < users.length; i++ ){
+       if(users[i].user_role == true){
+        total++;
+       }
+    
+       
+    }
+    
+
+    
+    return total;
+}
+
+function renderWinnerButton(){
+    const buttonList = [];
+    var total = 0;
+
+    for (let i =0; i < users.length; i++ ){
+       total = total + users[i].betting_winner;
+    
+       
+    }
+
+    
+    return total;
+}
+    
+
+    function renderDrawButton(){
+        const buttonList = [];
+        var total = 0;
+    
+        for (let i =0; i < users.length; i++ ){
+           total = total + users[i].betting_draw;
+        
+           
+        }
+    
+        
+        return total;
+        
+    }
+
+
+
+function renderAwayButton(){
+    const buttonList = [];
+    var total = 0;
+
+    for (let i =0; i < users.length; i++ ){
+       total = total + users[i].betting_lose;
+    
+       
+    }
+
+    
+    return total;
+    
+}
+
+
+
+    
+function renderUserMales(){
+const maleList = [];
+const totalNumber = 0;
+for (let i =0; i < users.length; i++ ){
+if(users[i].sex == "male"){
+   maleList.push(users[i].sex)
+}
+
+
+} return maleList.length;
+
+}
+
+function renderUserFemales(){
+    const femaleList = [];
+    const totalNumber = 0;
+    for (let i =0; i < users.length; i++ ){
+    if(users[i].sex == "female"){
+       femaleList.push(users[i].sex)
+    }
+    console.log(femaleList.length)
+    
+    } return femaleList.length;
+    
+    }
+
+    function renderOtherUsers(){
+        const otherUserList = [];
+        const totalNumber = 0;
+        for (let i =0; i < users.length; i++ ){
+        if(users[i].sex == "female"){
+           otherUserList.push(users[i].sex)
+        }
+        console.log(otherUserList.length)
+        
+        } return otherUserList.length;
+        
+        }
+
+function renderTotalUsers(){
+    return users.length;
+}
+
     
     
     return (
@@ -58,90 +194,74 @@ import '../../assets/assets-per/css/dashboard-responsive.css';
                     <div className="row">
                         <div className="col-xl-3 col-lg-3 col-sm-6">
                             <div className="single-static">
-                                <div className="part-icon">
-                                    <img src="../assets/assets-per/img/svg/money1.svg" alt=""/>
-                                </div>
+                                
                                 <div className="part-text">
-                                    <span className="number">$584.00</span>
-                                    <span className="title">Available Balance</span>
+                                    <span className="number">{renderTotalUsers()}</span>
+                                    <span className="title">Total Users</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-sm-6">
                             <div className="single-static">
-                                <div className="part-icon">
-                                    <img src="../assets/assets-per/img/svg/payment.svg" alt=""/>
-                                </div>
+                               
                                 <div className="part-text">
-                                    <span className="number">$464.00</span>
-                                    <span className="title">Total Payout</span>
+                                    <span className="number">{renderUserMales()}</span>
+                                    <span className="title">Total Male</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-sm-6">
                             <div className="single-static">
-                                <div className="part-icon">
-                                    <img src="../assets/assets-per/img/svg/money2.svg" alt=""/>
-                                </div>
+                                
                                 <div className="part-text">
-                                    <span className="number">$24k.00</span>
-                                    <span className="title">Deposits Total</span>
+                                    <span className="number">{renderUserFemales()}</span>
+                                    <span className="title">Total Female</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-sm-6">
                             <div className="single-static">
-                                <div className="part-icon">
-                                    <img src="../assets/assets-per/img/svg/hourglass.svg" alt=""/>
-                                </div>
+                               
                                 <div className="part-text">
-                                    <span className="number">$242.00</span>
-                                    <span className="title">Pending Amount</span>
+                                    <span className="number">{renderOtherUsers()}</span>
+                                    <span className="title">Total Other</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-sm-6">
                             <div className="single-static">
-                                <div className="part-icon">
-                                    <img src="../assets/assets-per/img/svg/profits.svg" alt=""/>
-                                </div>
+                               
                                 <div className="part-text">
-                                    <span className="number">$465.00</span>
-                                    <span className="title">Interest Earn</span>
+                                    <span className="number">{renderWinnerButton()}</span>
+                                    <span className="title">Total Home Button Clicks</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-sm-6">
                             <div className="single-static">
-                                <div className="part-icon">
-                                    <img src="../assets/assets-per/img/svg/cash.svg" alt=""/>
-                                </div>
+                                
                                 <div className="part-text">
-                                    <span className="number">$158.00</span>
-                                    <span className="title">Your Total Earings</span>
+                                    <span className="number">{renderDrawButton()}</span>
+                                    <span className="title">Total Draw Button Clicks</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-sm-6">
                             <div className="single-static">
-                                <div className="part-icon">
-                                    <img src="../assets/assets-per/img/svg/profit.svg" alt=""/>
-                                </div>
+                                
                                 <div className="part-text">
-                                    <span className="number">$814.00</span>
-                                    <span className="title">Referral Earings</span>
+                                    <span className="number">{renderAwayButton()}</span>
+                                    <span className="title">Total Away Button Clicks</span>
                                 </div>
                             </div>
                         </div>
 
                         <div className="col-xl-3 col-lg-3 col-sm-6">
                             <div className="single-static">
-                                <div className="part-icon">
-                                    <img src="../assets/assets-per/img/svg/transfer1.svg" alt=""/>
-                                </div>
+                                
                                 <div className="part-text">
-                                    <span className="number">$534.00</span>
-                                    <span className="title">Fund Transfer</span>
+                                    <span className="number">{renderTotalAdmins()}</span>
+                                    <span className="title">Total Admins</span>
                                 </div>
                             </div>
                         </div>
@@ -151,6 +271,7 @@ import '../../assets/assets-per/css/dashboard-responsive.css';
             </div>
 
                                      
+
 
 
                <div className="payment-history">
@@ -201,6 +322,7 @@ import '../../assets/assets-per/css/dashboard-responsive.css';
 
                    </div>
                </div>
+          
 
 
 
