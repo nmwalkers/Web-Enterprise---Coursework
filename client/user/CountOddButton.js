@@ -50,7 +50,7 @@ export default function CountOddButton({userIdd, params}) {
       if (data && data.error) {
         setValues({...values, error: data.error})
       } else {
-        setValues({...values, name: data.name, email: data.email})
+        setValues({...values, name: data.name, email: data.email, betting_winner: data.betting_winner, betting_draw: data.betting_draw, betting_lose: data.betting_lose})
       }
     })
     return function cleanup(){
@@ -73,7 +73,7 @@ export default function CountOddButton({userIdd, params}) {
         favourite_team: values.favourite_team || undefined,
         password: values.password || undefined,
         user_role: values.user_role,
-        betting_winner: buttonCountWinner,
+        betting_winner: values.betting_winner,
         betting_draw: values.betting_draw,
         betting_lose: values.betting_lose
     }
@@ -85,25 +85,21 @@ export default function CountOddButton({userIdd, params}) {
     }, user).then((data) => {
       if (data && data.error) {
         setValues({...values, error: data.error})
-      } else {
-        setValues({...values, userId: data._id, redirectToProfile: true})
+      } else if(params = 1) {
+        let count = data.betting_winner;
+        count = count + 1;
+        setValues({...values, userId: data._id, betting_winner: count, betting_draw: data.betting_draw, betting_lose: data.betting_lose})
       }
     })
 
 
 
 
-    if(params = 1){
-        setButtonCountWinner(user.betting_winner + 1);
-        setValues({...values, name: data.name, email: data.email})
-        console.log("Checking param num")
-      
-    }
+   
   
 
 
-    return ( <h2>hi</h2>
-    )
+   
 
    
     

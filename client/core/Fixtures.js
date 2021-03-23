@@ -18,7 +18,7 @@ import '../../assets/assets-per/css/schedule-page-responsive.css';
 
 
 function Fixtures( match ){
-
+console.log(match)
   useEffect(() => {
     setLoading(true)
     fetchFixtures();
